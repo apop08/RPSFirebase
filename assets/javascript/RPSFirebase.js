@@ -18,15 +18,35 @@ var config = {
 };
 firebase.initializeApp(config);
 database = firebase.database();
+
+var playersRef = database.ref("/players");
+var chatRef = db.ref("/chat");
+var connectedRef = database.ref(".info/connected");
 // JavaScript function that wraps everything
 $(document).ready(function () {
     /*
         the game object singleton
     */
     var gameInfo = {
-
+        playerName: "",
+        p1LoggedIn: false,
+        p2LoggedIn: false,
+        pNum: null,
+        pObj: null,
+        p1 = {
+            name: "",
+            wins: 0,
+            losses: 0,
+            pick: "",
+        },
+        p2 = {
+            name: "",
+            wins: 0,
+            losses: 0,
+            pick: "",
+        }
     }
 
 
-   
+
 });
