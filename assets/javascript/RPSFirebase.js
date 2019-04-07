@@ -50,31 +50,7 @@ $(document).ready(function () {
                 ++this.p2wins;
                 ++this.p1losses;
             }
-            if (this.playerMe == "player1") {
-                database.ref("/player1").remove();
-                var thisPlayer = database.ref("/player1").push({
 
-                    pid: this.p1id,
-                    wins: this.p1wins,
-                    losses: this.p1losses,
-                });
-
-                // Remove user from the connection list when they disconnect.
-                thisPlayer.onDisconnect().remove();
-            }
-
-            if (this.playerMe == "player2") {
-                database.ref("/player2").remove();
-                var thisPlayer = database.ref("/player2").push({
-
-                    pid: this.p2id,
-                    wins: this.p2wins,
-                    losses: this.p2losses,
-                });
-
-                // Remove user from the connection list when they disconnect.
-                thisPlayer.onDisconnect().remove();
-            }
         },
 
         setID: function (snapshot) {
@@ -137,7 +113,7 @@ $(document).ready(function () {
             gameInfo.setID(snapshot);
             isCreated = true;
         }
-        gameInfo.sendPlay("r");
+
     }).then(function () {
         database.ref("/player1throw").on("value", function (snapshot2) {
             if (gameInfo.lastPlay && gameInfo.playerMe == "player2" && snapshot2.val()) {
@@ -149,6 +125,32 @@ $(document).ready(function () {
                 gameInfo.lastPlay = null;
                 database.ref("/player1throw").remove();
                 database.ref("/player2throw").remove();
+
+                if (gameInfo.playerMe == "player1") {
+                    database.ref("/player1").remove();
+                    var thisPlayer = database.ref("/player1").push({
+
+                        pid: gameInfo.p1id,
+                        wins: gameInfo.p1wins,
+                        losses: gameInfo.p1losses,
+                    });
+
+                    // Remove user from the connection list when they disconnect.
+                    thisPlayer.onDisconnect().remove();
+                }
+
+                if (gameInfo.playerMe == "player2") {
+                    database.ref("/player2").remove();
+                    var thisPlayer = database.ref("/player2").push({
+
+                        pid: gameInfo.p2id,
+                        wins: gameInfo.p2wins,
+                        losses: gameInfo.p2losses,
+                    });
+
+                    // Remove user from the connection list when they disconnect.
+                    thisPlayer.onDisconnect().remove();
+                }
             }
         });
     }).then(function () {
@@ -162,6 +164,31 @@ $(document).ready(function () {
                 gameInfo.lastPlay = null;
                 database.ref("/player1throw").remove();
                 database.ref("/player2throw").remove();
+            }
+            if (gameInfo.playerMe == "player1") {
+                database.ref("/player1").remove();
+                var thisPlayer = database.ref("/player1").push({
+
+                    pid: gameInfo.p1id,
+                    wins: gameInfo.p1wins,
+                    losses: gameInfo.p1losses,
+                });
+
+                // Remove user from the connection list when they disconnect.
+                thisPlayer.onDisconnect().remove();
+            }
+
+            if (gameInfo.playerMe == "player2") {
+                database.ref("/player2").remove();
+                var thisPlayer = database.ref("/player2").push({
+
+                    pid: gameInfo.p2id,
+                    wins: gameInfo.p2wins,
+                    losses: gameInfo.p2losses,
+                });
+
+                // Remove user from the connection list when they disconnect.
+                thisPlayer.onDisconnect().remove();
             }
         });
     });
@@ -189,5 +216,16 @@ $(document).ready(function () {
         })
 
     });
-
+    $("#rock").on("click", function (event) {
+        event.preventDefault();
+        gameInfo.sendPlay("r");
+    });
+    $("#paper").on("click", function (event) {
+        event.preventDefault();
+        gameInfo.sendPlay("p");
+    });
+    $("#scissors").on("click", function (event) {
+        event.preventDefault();
+        gameInfo.sendPlay("s");
+    });
 });

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <title>Trivia Game</title>
@@ -13,62 +14,22 @@
   <script src="https://code.jquery.com/jquery.js"></script>
 
 </head>
+
 <body>
-    <div class="container jumbotron">
-      <div class="row justify-content-center">
-        <div><h1>Triva Game</h1><br><br></div>
-      </div>
-      <div class="row justify-content-center">
-        <div class="col-7"  id="Intro">
-          <form name="apiparams">
-            <label for="trivia_amount">Number of Questions:</label>
-            <br>
-            <input type="number" name="trivia_amount" id="trivia_amount" class="form-control" min="1" max="50" value="10">
-            <br>
-            <label for="trivia_category">Select Category: </label>
-            <select name="trivia_category" class="form-control" id="trivia_category">
-
-              <option value="any">Any Category</option>
-
-            </select>
-            <br>
-            <label for="trivia_difficulty">Select Difficulty: </label>
-            <select name="trivia_difficulty" class="form-control" id="trivia_difficulty">
-              <option value="any">Any Difficulty</option>
-              <option value="easy">Easy</option>
-              <option value="medium">Medium</option>
-              <option value="hard">Hard</option>
-            </select>
-            <br>
-            <label for="trivia_type">Select Type: </label>
-            <select name="trivia_type" class="form-control" id="trivia_type">
-              <option value="any">Any Type</option>
-              <option value="multiple">Multiple Choice</option>
-              <option value="boolean">True / False</option>
-            </select>
-            <br>
-            
-
-          </form>
-          <button class="btn btn-primary" value="submitQ" id="submitQ">Start</button>
-        </div>
-      </div>  
-      <div class="row justify-content-center" id="game">
-        <div class="col-7"  id="Question">
-          <div id="qText"></div>
-          <div id="responses"></div>
-        </div>
-        <div class="col-3"><div id="Timer"></div><div id="clock"></div></div><div class="col-2"  id="Stats"></div>
-      </div>
-      <div class="row justify-content-center" id="end">
-          <div id="endGame" class="col-12 justify-content-center">
-          </div>
-          <div class="col-12 justify-content-center">
-          <button class="btn btn-primary" value="Restart" id="Restart">Restart</button>
-          </div>
+  <div class="container jumbotron">
+    <div class="row justify-content-center">
+      <div>
+        <h1>Triva Game</h1><br><br>
       </div>
     </div>
-    
+    <div class="row justify-content-center">
+
+      <button class="btn btn-primary" value="r" id="rock">rock</button>
+      <button class="btn btn-primary" value="p" id="paper">paper</button>
+      <button class="btn btn-primary" value="s" id="scissors">scissors</button>
+    </div>
+
     <script src="Assets/Javascript/RPSFirebase.js"></script>
 </body>
+
 </html>
