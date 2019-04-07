@@ -20,19 +20,14 @@ firebase.initializeApp(config);
 database = firebase.database();
 // JavaScript function that wraps everything
 $(document).ready(function () {
-    //time per question constant
-    const timePerQ = 30;
     /*
         the game object singleton
     */
     var gameInfo = {
-        gameState: "",
-        p1: null,
-        p2: null,
-        myID: null,
         playerMe: "",
         nextpid: 99999,
         isCreated: false,
+        lastPlay: null,
         playRound: function () {
             p1throw = p1.throw();
             p2throw = p2.throw();
@@ -82,51 +77,29 @@ $(document).ready(function () {
             // Remove user from the connection list when they disconnect.
             thisPlayer.onDisconnect().remove();
 
-
+            
         },
 
-        sendPlay: function () {
+        sendPlay: function (toss) {
+            var playerRef = null;
+            if(this.playerMe == "player1")
+            {
+                playerRef = database.ref("/player1throw");
+            } 
+            else if(this.playerMe == "player2"){
+                playerRef = database.ref("/player2throw");
+            }
+
+            var thisPlayer = playerRef.set({
+
+                toss: toss
+            });
+            lastPlay = thisPlayer;
 
         }
     }
 
 
-    class player {
-        constructor(id) {
-            this.wins = 0;
-            this.losses = 0;
-            this.id = id;
-            this.throw = "";
-        }
-
-        set throw(t) {
-            this.throw = t;
-        }
-        get throw() {
-            return this.throw;
-        }
-
-        get wins() {
-            return this.wins;
-        }
-        get losses() {
-            return this.losses;
-        }
-        get id() {
-            return this.id;
-        }
-
-        incWin() {
-            ++this.wins;
-            this.throw = "";
-        }
-        incLoss() {
-            ++this.losses;
-            this.throw = "";
-        }
-
-
-    }
     database.ref().once("value", function (snapshot) {
         console.log(snapshot.val().nextpid.nextpid);
         gameInfo.nextpid = parseInt(snapshot.val().nextpid.nextpid);
@@ -135,7 +108,7 @@ $(document).ready(function () {
             gameInfo.setID(snapshot);
             isCreated = true;
         }
-        
+        gameInfo.sendPlay("r");
     });
 
     
