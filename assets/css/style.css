@@ -8,20 +8,7 @@
     width: 100%;
 }
 
-
-#hands {
-    top: 0;
-    left:0;
-    position:absolute;  
-
-}
-img{
-    vertical-align: bottom;   
-}
 body{
-    background-color: black;
-}
-div{
-    background-color: black;
-    position: relative;
+    background-color: white;
+    color:black;
 }

@@ -2,34 +2,106 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <title>Trivia Game</title>
+    <meta charset="UTF-8">
+    <title>RPS Firebase</title>
 
-  <link rel="stylesheet" href="Assets/CSS/reset.css">
-  <!-- Bootstrap File -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-  <script src="https://www.gstatic.com/firebasejs/5.9.3/firebase.js"></script>
-  <!-- <link rel="stylesheet" href="Assets/CSS/style.css"> -->
-  <!-- JQuery -->
-  <script src="https://code.jquery.com/jquery.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 
+    <link rel="stylesheet" href="assets/css/style.css">
 </head>
 
 <body>
-  <div class="container jumbotron">
-    <div class="row justify-content-center">
-      <div>
-        <h1>Triva Game</h1><br><br>
-      </div>
-    </div>
-    <div class="row justify-content-center">
 
-      <button class="btn btn-primary" value="r" id="rock">rock</button>
-      <button class="btn btn-primary" value="p" id="paper">paper</button>
-      <button class="btn btn-primary" value="s" id="scissors">scissors</button>
-    </div>
 
-    <script src="Assets/Javascript/RPSFirebase.js"></script>
+    <div class="container text-center">
+        <div class="jumbotron text-center">
+            <h1>Rock Paper Scissors</h1>
+        </div>
+
+        <div class="row">
+            <div class="col-4 player">
+                <h3 id="player-1"></h3>
+
+                <p class="stats p1-stats">
+                    <strong>Wins:</strong>
+                    <span id="p1-wins">0</span>
+                    <strong>Losses:</strong>
+                    <span id="p1-losses">0</span>
+                </p>
+
+                <p class="selections p1-selections">
+                    <button type="button" id="rock" class="btn btn-default selection">Rock</button>
+                    <button id="paper" class="btn btn-default selection">Paper</button>
+                    <button id="scissors" class="btn btn-default selection">Scissors</button>
+                </p>
+
+                <p class="selection-made p1-selection-made">Waiting for You!</p>
+
+                <p class="selection-reveal p1-selection-reveal"></p>
+            </div>
+
+            <div class="col-4">
+                <div class="pre-login align-items-center">
+                    <form role="login">
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="nameinput" placeholder="Please Enter Name">
+                            <span class="input-group-btn">
+                                <button class="btn btn-default" id="login" type="submit">Login</button>
+                            </span>
+                        </div>
+                    </form>
+                </div>
+                <h2 id="feedback"></h2>
+            </div>
+
+            <div class="col-4 player">
+                <h3 id="player-2"></h3>
+
+                <p class="stats p2-stats">
+                    <strong>Wins:</strong>
+                    <span id="p2-wins">0</span>
+                    <strong>Losses:</strong>
+                    <span id="p2-losses">0</span>
+                </p>
+
+                <p class="selections p2-selections">
+                    <button id="rock" class="btn selection">Rock</button>
+                    <button id="paper" class="btn selection">Paper</button>
+                    <button id="scissors" class="btn selection">Scissors</button>
+                </p>
+
+                <p class="selection-made p2-selection-made">Waiting for You!</p>
+
+                <p class="selection-reveal p2-selection-reveal"></p>
+            </div>
+        </div>
+
+
+        <div class="row post-login">
+            <div class="col-12">
+                <div class="panel panel-default">
+
+                    <div class="panel-heading">Chat:</div>
+
+                    <ul id="chat-log" class="list-unstyled text-center"></ul>
+
+                    <form role="chat" class="panel-footer">
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="chat">
+                            <span class="input-group-btn">
+                                <button class="btn btn-default" id="sendChat" type="submit">Send</button>
+                            </span>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.9.4/firebase.js"></script>
+    <script src="assets/javascript/RPSFirebase.js"></script>
+
 </body>
+
 
 </html>
